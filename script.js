@@ -12,4 +12,39 @@ function getHumanChoice() {
   return humanInput;
 }
 
-console.log(getHumanChoice());
+let humanScore = 0,
+  compScore = 0;
+
+function playRound(computerChoice, humanChoice) {
+  if (computerChoice == "Rock" && humanChoice == "Scissor") {
+    console.log("The computer wins!");
+    compScore++;
+  } else if (computerChoice == "Scissor" && humanChoice == "Rock") {
+    console.log("You win!");
+    humanScore++;
+  } else if (computerChoice == "Paper" && humanChoice == "Rock") {
+    console.log("The computer wins!");
+    compScore++;
+  } else if (computerChoice == "Rock" && humanChoice == "Paper") {
+    console.log("You win!");
+    humanScore++;
+  } else if (computerChoice == "Scissor" && humanChoice == "Paper") {
+    console.log("The computer wins!");
+    compScore++;
+  } else if (computerChoice == "Paper" && humanChoice == "Scissor") {
+    console.log("You win!");
+    humanScore++;
+  } else {
+    console.log("Tie");
+  }
+}
+
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    let computerChoice = getComputerChoice(),
+      humanChoice = getHumanChoice();
+    console.log(playRound(computerChoice, humanChoice));
+  }
+}
+
+console.log(playGame());
