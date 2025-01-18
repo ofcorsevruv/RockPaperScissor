@@ -16,26 +16,19 @@ let humanScore = 0,
   compScore = 0;
 
 function playRound(computerChoice, humanChoice) {
-  if (computerChoice == "Rock" && humanChoice == "Scissor") {
-    console.log("The computer wins!");
-    compScore++;
-  } else if (computerChoice == "Scissor" && humanChoice == "Rock") {
-    console.log("You win!");
-    humanScore++;
-  } else if (computerChoice == "Paper" && humanChoice == "Rock") {
-    console.log("The computer wins!");
-    compScore++;
-  } else if (computerChoice == "Rock" && humanChoice == "Paper") {
-    console.log("You win!");
-    humanScore++;
-  } else if (computerChoice == "Scissor" && humanChoice == "Paper") {
-    console.log("The computer wins!");
-    compScore++;
-  } else if (computerChoice == "Paper" && humanChoice == "Scissor") {
-    console.log("You win!");
-    humanScore++;
-  } else {
+  let winCondition = {
+    Rock: "Scissor",
+    Paper: "Rock",
+    Scissor: "Paper",
+  };
+  if (computerChoice == humanChoice) {
     console.log("Tie");
+  } else if (winCondition[computerChoice] == humanChoice) {
+    console.log("The computer wins!");
+    compScore++;
+  } else {
+    console.log("You win!");
+    humanScore++;
   }
   return humanScore, compScore;
 }
@@ -48,8 +41,10 @@ function playGame() {
   }
   if (humanScore < compScore) {
     return "AND THEY COMPUTER WONNNN!";
-  } else {
+  } else if (compScore < humanScore) {
     return "HIS NAME IS JOHN CENAAAAA! You won the GAME!";
+  } else {
+    console.log("YOU GUYS MANAGED TO TIEEEEE!");
   }
 }
 
