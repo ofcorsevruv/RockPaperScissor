@@ -37,14 +37,22 @@ function playRound(computerChoice, humanChoice) {
   } else {
     console.log("Tie");
   }
+  return humanScore, compScore;
 }
 
 function playGame() {
   for (let i = 0; i < 5; i++) {
     let computerChoice = getComputerChoice(),
       humanChoice = getHumanChoice();
-    console.log(playRound(computerChoice, humanChoice));
+    playRound(computerChoice, humanChoice);
+  }
+  if (humanScore < compScore) {
+    return "AND THEY COMPUTER WONNNN!";
+  } else {
+    return "HIS NAME IS JOHN CENAAAAA! You won the GAME!";
   }
 }
 
 console.log(playGame());
+console.log("your score", humanScore);
+console.log("comp score", compScore);
