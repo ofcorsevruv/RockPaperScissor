@@ -21,9 +21,16 @@ let humanScore = 0,
 
 let humanChoice = "";
 
-rockBtn.addEventListener("click", function () {
+function playRound(event) {
   let computerChoice = getComputerChoice();
-  let humanChoice = "Rock";
+
+  if (event.target === rockBtn) {
+    humanChoice = "Rock";
+  } else if (event.target === paperBtn) {
+    humanChoice = "Paper";
+  } else if (event.target === scissorBtn) {
+    humanChoice = "Scissor";
+  }
 
   let winCondition = {
     Rock: "Scissor",
@@ -42,50 +49,8 @@ rockBtn.addEventListener("click", function () {
   }
 
   return humanScore, compScore;
-});
+}
 
-paperBtn.addEventListener("click", function () {
-  let computerChoice = getComputerChoice();
-  let humanChoice = "Paper";
-
-  let winCondition = {
-    Rock: "Scissor",
-    Paper: "Rock",
-    Scissor: "Paper",
-  };
-
-  if (computerChoice == humanChoice) {
-    console.log("Tie");
-  } else if (winCondition[computerChoice] == humanChoice) {
-    console.log("The computer wins!");
-    compScore++;
-  } else {
-    console.log("You win!");
-    humanScore++;
-  }
-
-  return humanScore, compScore;
-});
-
-scissorBtn.addEventListener("click", function () {
-  let computerChoice = getComputerChoice();
-  let humanChoice = "Scissor";
-
-  let winCondition = {
-    Rock: "Scissor",
-    Paper: "Rock",
-    Scissor: "Paper",
-  };
-
-  if (computerChoice == humanChoice) {
-    console.log("Tie");
-  } else if (winCondition[computerChoice] == humanChoice) {
-    console.log("The computer wins!");
-    compScore++;
-  } else {
-    console.log("You win!");
-    humanScore++;
-  }
-
-  return humanScore, compScore;
-});
+rockBtn.addEventListener("click", playRound);
+paperBtn.addEventListener("click", playRound);
+scissorBtn.addEventListener("click", playRound);
