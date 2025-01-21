@@ -1,3 +1,5 @@
+const rockBtn = document.querySelector("#rockBtn");
+
 function getComputerChoice() {
   const compChoicesForTheGame = ["Rock", "Paper", "Scissor"];
   let indexOfChoice = Math.floor(Math.random() * 3);
@@ -15,12 +17,16 @@ function getHumanChoice() {
 let humanScore = 0,
   compScore = 0;
 
-function playRound(computerChoice, humanChoice) {
+let humanChoice = "";
+
+function playRound() {
+  let computerChoice = getComputerChoice();
   let winCondition = {
     Rock: "Scissor",
     Paper: "Rock",
     Scissor: "Paper",
   };
+
   if (computerChoice == humanChoice) {
     console.log("Tie");
   } else if (winCondition[computerChoice] == humanChoice) {
@@ -30,24 +36,29 @@ function playRound(computerChoice, humanChoice) {
     console.log("You win!");
     humanScore++;
   }
+
   return humanScore, compScore;
 }
 
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    let computerChoice = getComputerChoice(),
-      humanChoice = getHumanChoice();
-    playRound(computerChoice, humanChoice);
-  }
-  if (humanScore < compScore) {
-    return "AND THEY COMPUTER WONNNN!";
-  } else if (compScore < humanScore) {
-    return "HIS NAME IS JOHN CENAAAAA! You won the GAME!";
-  } else {
-    console.log("YOU GUYS MANAGED TO TIEEEEE!");
-  }
-}
+rockBtn.addEventListener("click", function () {
+  let computerChoice = getComputerChoice();
+  let humanChoice = "Rock";
 
-console.log(playGame());
-console.log("your score", humanScore);
-console.log("comp score", compScore);
+  let winCondition = {
+    Rock: "Scissor",
+    Paper: "Rock",
+    Scissor: "Paper",
+  };
+
+  if (computerChoice == humanChoice) {
+    console.log("Tie");
+  } else if (winCondition[computerChoice] == humanChoice) {
+    console.log("The computer wins!");
+    compScore++;
+  } else {
+    console.log("You win!");
+    humanScore++;
+  }
+
+  return humanScore, compScore;
+});
