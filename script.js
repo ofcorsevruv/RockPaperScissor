@@ -1,6 +1,7 @@
 const rockBtn = document.querySelector("#rockBtn");
 const paperBtn = document.querySelector("#paperBtn");
 const scissorBtn = document.querySelector("#scissorBtn");
+const gameOutput = document.querySelector("#gameOutput");
 
 function getComputerChoice() {
   const compChoicesForTheGame = ["Rock", "Paper", "Scissor"];
@@ -39,13 +40,26 @@ function playRound(event) {
   };
 
   if (computerChoice == humanChoice) {
-    console.log("Tie");
+    gameOutput.textContent = "Tie";
+    console.log("tie");
   } else if (winCondition[computerChoice] == humanChoice) {
-    console.log("The computer wins!");
+    gameOutput.textContent = "Round win: Computer gets one point";
+    console.log("comp win");
     compScore++;
   } else {
-    console.log("You win!");
+    gameOutput.textContent = "Round win: You get one point";
+    console.log("you win");
     humanScore++;
+  }
+
+  if (humanScore == 5) {
+    console.log("HUMAN won", humanScore);
+    event.target = "nope";
+    return "win";
+  } else if (compScore == 5) {
+    console.log("COMP won", compScore);
+    event.target = "nope";
+    return "win";
   }
 
   return humanScore, compScore;
